@@ -1,47 +1,103 @@
-function FormProduct() {
+import { useForm } from "react-hook-form";
+
+function FormProduct(props) {
+  const { register, handleSubmit } = useForm();
+
+  function saveInLocalStorage(data) {
+    const storageProducts = localStorage.getItem("products");
+
+    if (!storageProducts) {
+      const products = [data];
+      localStorage.setItem("products", JSON.stringify(products));
+      return;
+    }
+
+    const products = JSON.parse(storageProducts);
+    products.push(data);
+    localStorage.setItem("products", JSON.stringify(products));
+  }
+
+  function handleModal() {
+    props.handleModalFromForm();
+  }
+
+  const onSubmit = (data) => {
+    saveInLocalStorage(data);
+    props.setProductData(data);
+  };
+
   return (
     <div>
-      <form>
-        <label htmlFor="input-product-name">Nome: </label>
-        <input type="text" name="name" id="input-product-name" title="Name" />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div>
+          <label htmlFor="input-product-name">Nome: </label>
+          <input
+            {...register("name")}
+            type="text"
+            name="name"
+            id="input-product-name"
+            title="Name"
+          />
+        </div>
 
-        <label htmlFor="input-product-description">Descrição: </label>
-        <input
-          type="text"
-          name="description"
-          id="input-product-description"
-          title="Description"
-        />
+        <div>
+          <label htmlFor="input-product-description">Descrição: </label>
+          <input
+            {...register("description")}
+            type="text"
+            name="description"
+            id="input-product-description"
+            title="Description"
+          />
+        </div>
 
-        <label htmlFor="input-product-category">Categoria: </label>
-        <input
-          type="text"
-          name="category"
-          id="input-product-category"
-          title="Category"
-        />
+        <div>
+          <label htmlFor="input-product-category">Categoria: </label>
+          <input
+            {...register("category")}
+            type="text"
+            name="category"
+            id="input-product-category"
+            title="Category"
+          />
+        </div>
 
-        <label htmlFor="input-product-sku">SKU: </label>
-        <input type="number" name="sku" id="input-product-sku" title="SKU" />
+        <div>
+          <label htmlFor="input-product-sku">SKU: </label>
+          <input
+            {...register("sku")}
+            type="number"
+            name="sku"
+            id="input-product-sku"
+            title="SKU"
+          />
+        </div>
 
-        <label htmlFor="input-product-price">Preço: </label>
-        <input
-          type="number"
-          name="price"
-          id="input-product-price"
-          title="Price"
-        />
+        <div>
+          <label htmlFor="input-product-price">Preço: </label>
+          <input
+            {...register("price")}
+            type="number"
+            name="price"
+            id="input-product-price"
+            title="Price"
+          />
+        </div>
 
-        <label htmlFor="input-product-quantity">Quantidade: </label>
-        <input
-          type="number"
-          name="quantity"
-          id="input-product-quantity"
-          title="Quantity"
-        />
+        <div>
+          <label htmlFor="input-product-quantity">Quantidade: </label>
+          <input
+            {...register("quantity")}
+            type="number"
+            name="quantity"
+            id="input-product-quantity"
+            title="Quantity"
+          />
+        </div>
 
         <button>Cadastrar</button>
       </form>
+      <button onClick={handleModal}>Fechar</button>
     </div>
   );
 }

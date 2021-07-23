@@ -1,15 +1,24 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import FormProduct from "../../components/FormProduct";
 import Header from "../../components/Header";
 
 function Product() {
   const [isModal, setIsModal] = useState(false);
+  const [localProducts, setLocalProducts] = useState([]);
 
   function handleModal() {
     !isModal ? setIsModal(true) : setIsModal(false);
-    console.log(isModal);
   }
+
+  function setProductFromLocalStorage(data) {
+    setLocalProducts((prev) => [...prev, data]);
+  }
+
+  useEffect(() => {
+    const products = JSON.parse(localStorage.getItem("products"));
+    if (products !== null) setLocalProducts(products);
+  }, []);
 
   return (
     <div>
@@ -17,7 +26,14 @@ function Product() {
       <h2>Registro de Produtos</h2>
 
       <button onClick={handleModal}>Novo produto</button>
-      {isModal ? <FormProduct /> : ""}
+      {isModal ? (
+        <FormProduct
+          setProductData={setProductFromLocalStorage}
+          handleModalFromForm={handleModal}
+        />
+      ) : (
+        ""
+      )}
 
       <table>
         <thead>
@@ -31,14 +47,16 @@ function Product() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Camiseta Masculina</td>
-            <td>Camiseta preta masculina tamanhos P, M e G</td>
-            <td>Camisa</td>
-            <td>13245678</td>
-            <td>59.80</td>
-            <td>25</td>
-          </tr>
+          {localProducts?.map((product) => (
+            <tr key={product.sku}>
+              <td>{product.name}</td>
+              <td>{product.description}</td>
+              <td>{product.category}</td>
+              <td>{product.sku}</td>
+              <td>{product.price}</td>
+              <td>{product.quantity}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

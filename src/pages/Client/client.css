@@ -1,0 +1,16 @@
+.client-container {
+  color: #16233a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+button {
+  background-color: #d7197a;
+  color: #fff;
+}

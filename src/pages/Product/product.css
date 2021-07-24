@@ -1,0 +1,6 @@
+.product-container {
+  color: #16233a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

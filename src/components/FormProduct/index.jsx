@@ -17,19 +17,28 @@ function FormProduct(props) {
     localStorage.setItem("products", JSON.stringify(products));
   }
 
+  function getLastProductFromLocalStorage() {
+    const products = JSON.parse(localStorage.getItem("products"));
+    const lastProduct = products[products.length - 1];
+    return lastProduct;
+  }
+
   function handleModal() {
     props.handleModalFromForm();
   }
 
   const onSubmit = (data) => {
     saveInLocalStorage(data);
-    props.setProductData(data);
+    const product = getLastProductFromLocalStorage();
+    props.setProductData(product);
+    alert(`O produto '${product.name}' foi adicionado.`);
+    handleModal();
   };
 
   return (
-    <div>
+    <div className="box-model">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className="field">
           <label htmlFor="input-product-name">Nome: </label>
           <input
             {...register("name")}
@@ -40,7 +49,7 @@ function FormProduct(props) {
           />
         </div>
 
-        <div>
+        <div className="field">
           <label htmlFor="input-product-description">Descrição: </label>
           <input
             {...register("description")}
@@ -51,7 +60,7 @@ function FormProduct(props) {
           />
         </div>
 
-        <div>
+        <div className="field">
           <label htmlFor="input-product-category">Categoria: </label>
           <input
             {...register("category")}
@@ -62,18 +71,18 @@ function FormProduct(props) {
           />
         </div>
 
-        <div>
+        <div className="field">
           <label htmlFor="input-product-sku">SKU: </label>
           <input
             {...register("sku")}
-            type="number"
+            type="text"
             name="sku"
             id="input-product-sku"
             title="SKU"
           />
         </div>
 
-        <div>
+        <div className="field">
           <label htmlFor="input-product-price">Preço: </label>
           <input
             {...register("price")}
@@ -84,7 +93,7 @@ function FormProduct(props) {
           />
         </div>
 
-        <div>
+        <div className="field">
           <label htmlFor="input-product-quantity">Quantidade: </label>
           <input
             {...register("quantity")}
@@ -97,7 +106,9 @@ function FormProduct(props) {
 
         <button>Cadastrar</button>
       </form>
-      <button onClick={handleModal}>Fechar</button>
+      <div className="btn-close" onClick={handleModal}>
+        X
+      </div>
     </div>
   );
 }

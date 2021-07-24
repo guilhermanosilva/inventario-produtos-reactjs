@@ -1,0 +1,150 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+}
+
+html,
+button,
+input {
+  font-family: "Lato", sans-serif;
+}
+
+body {
+  background-color: #f8f8ff;
+}
+
+button {
+  border: none;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  outline: none;
+  padding: 0.625rem 1rem;
+  transition: 0.3s;
+}
+
+button:hover {
+  cursor: pointer;
+  transform: translateY(-3px);
+}
+
+button:active {
+  filter: brightness(0.5);
+}
+
+button:focus {
+  border: 1px solid #16233a;
+}
+
+table {
+  background-color: #efefef;
+  color: #16233a;
+  margin-top: 1rem;
+}
+
+th {
+  border-bottom: 1px solid #16233a;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+}
+
+th,
+td {
+  padding: 0.25rem 0.625rem;
+  text-align: center;
+}
+
+td {
+  opacity: 0.9;
+  font-size: 0.875rem;
+}
+
+form {
+  background-color: #efefef;
+  border-radius: 0.25rem;
+  margin: 1rem;
+  padding: 0.625rem 2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  min-width: 20rem;
+}
+
+label {
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+input {
+  color: #273957;
+  border: 1px solid #273957;
+  border-radius: 0.25rem;
+  font-weight: bold;
+  height: 2rem;
+  outline: none;
+  padding: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+input:focus {
+  border: 1px solid #d7197a;
+}
+
+.box-model {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: 10;
+
+  min-width: 100%;
+  min-height: 100%;
+  background: #000000dd;
+}
+
+.btn-close {
+  color: white;
+  background-color: #d7197a;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  padding: 0.25rem 0.625rem;
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  transition: all 0.3s;
+}
+
+.btn-close:hover {
+  cursor: pointer;
+  color: #16233a;
+  opacity: 0.8;
+}
+
+fieldset {
+  border: none;
+}
+
+.fields-container {
+  display: flex;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.btn-add {
+  background-color: #16233a;
+}
+
+.btn-add:hover {
+  background-color: #273957;
+}

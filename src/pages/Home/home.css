@@ -1,0 +1,51 @@
+main {
+  display: flex;
+  color: #16233a;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  margin-bottom: 2rem;
+  width: 50rem;
+}
+
+section h2 {
+  margin-bottom: 0.875rem;
+}
+
+.link {
+  color: #d7197a;
+  text-transform: none;
+  font-size: inherit;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+p {
+  color: #273957;
+  line-height: 150%;
+}
+
+footer {
+  background-color: #16233a;
+  position: absolute;
+  bottom: 0;
+  padding: 1rem;
+  width: 100vw;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+footer p {
+  color: white;
+}

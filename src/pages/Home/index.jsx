@@ -41,7 +41,11 @@ function Home() {
       <footer>
         <div>
           <p>Dsenvolvido por:</p>
-          <a className="link" href="https://linkeding.com/in/guilhermanosilva">
+          <a
+            className="link"
+            href="https://linkedin.com/in/guilhermanosilva"
+            target="blank"
+          >
             Guilhermano Silva
           </a>
         </div>

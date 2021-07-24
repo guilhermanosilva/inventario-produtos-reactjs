@@ -89,11 +89,17 @@ input {
   height: 2rem;
   outline: none;
   padding: 0.625rem;
-  margin-bottom: 0.625rem;
+  margin-bottom: 0.25rem;
 }
 
 input:focus {
   border: 1px solid #d7197a;
+}
+
+.field-error {
+  color: #d71958;
+  font-size: 0.875rem;
+  margin-bottom: 0.625rem;
 }
 
 .box-model {

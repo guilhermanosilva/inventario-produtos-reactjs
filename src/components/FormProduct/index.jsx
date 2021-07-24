@@ -1,7 +1,32 @@
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup.object().shape({
+  name: yup.string().required("Informe o nome"),
+  description: yup.string().required("Informe a descrição"),
+  category: yup.string().required("Informe a categoria"),
+  sku: yup.string(),
+  price: yup
+    .number()
+    .typeError("Informe o preço com duas casas decimais separadas por ponto")
+    .positive()
+    .required("Informe o preço"),
+  quantity: yup
+    .number()
+    .typeError("Informe a quantidade em forma numérica")
+    .positive()
+    .required("Informe a quantidade"),
+});
 
 function FormProduct(props) {
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
 
   function saveInLocalStorage(data) {
     const storageProducts = localStorage.getItem("products");
@@ -47,6 +72,7 @@ function FormProduct(props) {
             id="input-product-name"
             title="Name"
           />
+          <p className="field-error">{errors.name?.message}</p>
         </div>
 
         <div className="field">
@@ -58,6 +84,7 @@ function FormProduct(props) {
             id="input-product-description"
             title="Description"
           />
+          <p className="field-error">{errors.description?.message}</p>
         </div>
 
         <div className="field">
@@ -69,6 +96,7 @@ function FormProduct(props) {
             id="input-product-category"
             title="Category"
           />
+          <p className="field-error">{errors.category?.message}</p>
         </div>
 
         <div className="field">
@@ -90,7 +118,9 @@ function FormProduct(props) {
             name="price"
             id="input-product-price"
             title="Price"
+            step="0.01"
           />
+          <p className="field-error">{errors.price?.message}</p>
         </div>
 
         <div className="field">
@@ -102,6 +132,7 @@ function FormProduct(props) {
             id="input-product-quantity"
             title="Quantity"
           />
+          <p className="field-error">{errors.quantity?.message}</p>
         </div>
 
         <button>Cadastrar</button>
